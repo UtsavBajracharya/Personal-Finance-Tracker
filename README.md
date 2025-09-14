@@ -1,2 +1,2 @@
-# Expense-Tracker
-Expense Tracking System Using Django
+# Personal-Finance-Tracker
+Expenses Tracking System Using Django
