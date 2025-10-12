@@ -179,11 +179,15 @@
                 <td class="px-4 py-2">{{e.category}}</td>
                 <td class="px-4 py-2 text-right">${{ '%.2f'|format(e.amount) }}</td>
                 <td class="px-4 py-2 text-right">
+                  <form action="{{url_for('delete')}}">
+
                   <button
                     class="text-rose-300 hover:text-rose-200 text-xs border border-rose-400/30 px-3 py-1 rounded-lg"
                   >
                     Delete
                   </button>
+                  </form>
+
                 </td>
               </tr>
 

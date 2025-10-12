@@ -42,7 +42,7 @@ def index():
         
     )
 
-#add route for expense form
+# add route for expense form
 @app.route("/add", methods=['POST'])
 def add():
 
@@ -82,6 +82,16 @@ def add():
 
     print("Form Received:", dict(request.form))
     return make_response("Form received check the console")
+
+# Detete expenses
+@app.route("/delete/<int:expense_id>", methods=['POST'])
+def delete(expense_id):
+    e = Expense.query.get_or_404(expense_id)
+    db.session.delete(e)
+    db.session.commit()
+    flash("Expense deleted", "success")
+    return redirect(url_for("index"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
