@@ -21,13 +21,26 @@ class Expense(db.Model):
 
 with app.app_context():
     db.create_all()
+    
+CATEGORIES = ['Food', 'Transport', 'Rent', 'Utilities', 'Health']
+
+
 
 @app.route("/")
 def index():
 
     expenses = Expense.query.order_by(Expense.date.desc(), Expense.id.desc()).all()
-    print(expenses)
-    return render_template("index.html", expenses=expenses)
+    total = round(sum(e.amount for e in expenses))
+
+    return render_template(
+
+        "index.html", 
+
+        expenses=expenses,
+        categories=CATEGORIES,
+        total=total
+        
+    )
 
 #add route for expense form
 @app.route("/add", methods=['POST'])
