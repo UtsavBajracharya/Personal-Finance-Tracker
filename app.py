@@ -68,11 +68,11 @@ def index():
         "index.html", 
 
         categories=CATEGORIES,
-        today=date.today().isoformat()
+        today=date.today().isoformat(),
         expenses=expenses,
         total=total,
         start_str=start_str,
-        end_str=end_str,
+        end_str=end_str
 
         
     )
