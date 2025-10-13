@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, make_response, flash, redirect
+from flask import Flask, render_template, request, url_for, make_response, flash, redirect, Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date, datetime
 from sqlalchemy import func
@@ -41,14 +41,12 @@ def parse_date_or_none(s: str):
 def index():
 
     # 1 read query string
-
     start_str = (request.args.get("start") or "").strip()
     end_str = (request.args.get("end") or "").strip()
     selected_category = (request.args.get("category") or "").strip()
 
 
     # 2 parsing
-
     start_date = parse_date_or_none(start_str)
     end_date = parse_date_or_none(end_str)
 
@@ -174,6 +172,55 @@ def delete(expense_id):
     db.session.commit()
     flash("Expense deleted", "success")
     return redirect(url_for("index"))
+
+
+@app.route("/export.csv")
+def export_csv():
+
+     # 1 read query string
+    start_str = (request.args.get("start") or "").strip()
+    end_str = (request.args.get("end") or "").strip()
+    selected_category = (request.args.get("category") or "").strip()
+
+
+    # 2 parsing
+    start_date = parse_date_or_none(start_str)
+    end_date = parse_date_or_none(end_str)
+
+    q = Expense.query
+
+    if start_date:
+        q = q.filter(Expense.date >= start_date)
+    if end_date:
+        q = q.filter(Expense.date <= end_date)    
+
+    if selected_category: 
+        q = q.filter(Expense.category == selected_category)  
+
+    expenses = q.order_by(Expense.date.desc(), Expense.id.desc()).all()
+
+    # generate CSV
+    lines = ["date, description,category, amount"]
+
+    for e in expenses:
+        lines.append(f"{e.date.isoformat()}, {e.description}, {e.category}, {e.amount:.2f}")
+    cvs_data = "\n".join(lines) 
+
+    f_name_start = start_str or "all"
+    fname_end = end_str or "all"
+    filename = f"expenses_{f_name_start}_to_{fname_end}.csv"
+
+    return Response(
+        cvs_data,
+        mimetype="text/csv",
+        headers={
+            "Content-Type": "text/csv",
+            "Content-Disposition": f'attachment; filename="{filename}"'
+        }
+    )
+
+
+
 
 
 if __name__ == "__main__":
