@@ -70,6 +70,8 @@ def index():
     expenses = q.order_by(Expense.date.desc(), Expense.id.desc()).all()
     total = round(sum(e.amount for e in expenses))
 
+
+    # Code for piechart
     cat_q = db.session.query(Expense.category, func.sum(Expense.amount))
 
     if start_date:
@@ -82,7 +84,6 @@ def index():
         cat_q = cat_q.filter(Expense.category == selected_category)
 
     cat_rows = cat_q.group_by(Expense.category).all()
-
     cat_labels = [c for c, _ in cat_rows]
     cat_values = [round(float(s or 0),2) for _, s in cat_rows]
 
