@@ -164,6 +164,16 @@ def add():
     print("Form Received:", dict(request.form))
     return make_response("Form received check the console")
 
+
+
+# Update expenses
+@app.route("/update/<int:expense_id>", methods=['POST'])
+def update(expense_id):
+    e = Expense.query.get_or_404(expense_id)
+
+    return render_template('')
+     
+
 # Detete expenses
 @app.route("/delete/<int:expense_id>", methods=['POST'])
 def delete(expense_id):
