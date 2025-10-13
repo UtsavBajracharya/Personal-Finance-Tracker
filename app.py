@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, make_response, flash, redirect, Response
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date, datetime
+from datetime import date, datetime, date as dt_date
 from sqlalchemy import func
 
 
@@ -167,11 +167,11 @@ def add():
 
 
 # Update expenses
-@app.route("/update/<int:expense_id>", methods=['POST'])
-def update(expense_id):
+@app.route("/edit/<int:expense_id>", methods=['GET'])
+def edit(expense_id):
     e = Expense.query.get_or_404(expense_id)
 
-    return render_template('')
+    return render_template("edit.html", expense=e, categories=CATEGORIES, today=dt_date.today().isoformat())
      
 
 # Detete expenses
