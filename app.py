@@ -88,6 +88,23 @@ def index():
     cat_values = [round(float(s or 0),2) for _, s in cat_rows]
 
 
+    # code for day chart
+    day_q = db.session.query(Expense.category, func.sum(Expense.amount))
+
+    if start_date:
+        day_q = day_q.filter(Expense.date >= start_date)
+
+    if end_date:
+        day_q = day_q.filter(Expense.date <= end_date)
+
+    if selected_category:
+        day_q = day_q.filter(Expense.category == selected_category)
+
+    day_rows = day_q.group_by(Expense.category).order_by(Expense.date).all()
+    day_labels = [d.isoformat() for d, _ in day_rows]
+    day_values = [round(float(s or 0),2) for _, s in day_rows]
+
+
 
     return render_template(
 
