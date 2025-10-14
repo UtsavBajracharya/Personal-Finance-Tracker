@@ -181,7 +181,9 @@ def edit_post(expense_id):
     category = (request.form.get("category") or "").strip()
     date_str = (request.form.get("date") or "").strip()
 
-    print(request.form)
+    if not description or not amount_str or not category:
+        flash("Please fill description, amount, and category", "error")
+        return redirect(url_for("edit", expense_id=expense_id))
 
     
     
