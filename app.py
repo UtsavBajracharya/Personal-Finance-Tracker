@@ -184,9 +184,16 @@ def edit_post(expense_id):
     if not description or not amount_str or not category:
         flash("Please fill description, amount, and category", "error")
         return redirect(url_for("edit", expense_id=expense_id))
+    
+    try:
+        amount = float(amount_str)
+        if amount <= 0:
+            raise ValueError
+    
+    except ValueError:
+        flash("Amount must be a positive number", "error")
+        return redirect(url_for("edit", expense_id=expense_id))
 
-    
-    
 
     return render_template("edit.html", expense=e, categories=CATEGORIES, today=dt_date.today().isoformat())
      
