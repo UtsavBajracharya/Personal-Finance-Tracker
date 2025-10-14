@@ -172,6 +172,21 @@ def edit(expense_id):
     e = Expense.query.get_or_404(expense_id)
 
     return render_template("edit.html", expense=e, categories=CATEGORIES, today=dt_date.today().isoformat())
+
+@app.route("/edit/<int:expense_id>", methods=['POST'])
+def edit_post(expense_id):
+    e = Expense.query.get_or_404(expense_id)
+    description = (request.form.get("description") or "").strip() #returns a string instead of none and prevent that error from happening
+    amount_str = (request.form.get("amount") or "").strip()
+    category = (request.form.get("category") or "").strip()
+    date_str = (request.form.get("date") or "").strip()
+
+    print(request.form)
+
+    
+    
+
+    return render_template("edit.html", expense=e, categories=CATEGORIES, today=dt_date.today().isoformat())
      
 
 # Detete expenses
