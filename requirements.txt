@@ -1,0 +1,21 @@
+# Core Web Framework
+Flask==3.1.2
+
+# Template Engine 
+Jinja2==3.1.6
+
+# Database ORM
+SQLAlchemy==2.0.25
+
+# Flask Extensions for Database Integration
+Flask-SQLAlchemy==3.1.1
+
+# Data Visualization (Use Chart.js, JS handles frontend visualization)
+
+# For Environment Variable Management (optional but recommended)
+python-dotenv==1.1.1
+
+# Utility for CSV export (comes with Python standard library, so no need to install separately)
+
+# Package Management
+pip==24.2
