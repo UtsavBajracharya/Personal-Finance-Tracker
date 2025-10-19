@@ -28,10 +28,10 @@ A **Personal Finance Tracker** web application built with **Python** and **Flask
 ## 🧠 Future Enhancements
 
 - 🔐 **User Authentication**  
- - Add a login and registration system to allow individual accounts and secure personal finance tracking.
+  - Add a login and registration system to allow individual accounts and secure personal finance tracking.
 
 - 🤖 **Expense Recommendations**  
- - Implement intelligent suggestions and insights for expense control and budgeting.
+  - Implement intelligent suggestions and insights for expense control and budgeting.
 
 ---
 
