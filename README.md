@@ -49,7 +49,7 @@ A **Personal Finance Tracker** web application built with **Python** and **Flask
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/personal-finance-tracker.git
+git clone https://github.com/personal-finance-tracker.git
 cd personal-finance-tracker
 ```
 
@@ -60,7 +60,18 @@ python -m venv venv
 
 ### 3️⃣ Activate the Virtual Environment
 ```bash
-venv\Scripts\activate
+venv\Scripts\activate.bat
 ```
 
+### 4️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
+### 5️⃣ Run the Application
+```bash
+python app.py
+```
+
+Start locally at:
+➡️ http://127.0.0.1:5000/
