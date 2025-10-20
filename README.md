@@ -45,3 +45,22 @@ A **Personal Finance Tracker** web application built with **Python** and **Flask
 | **Visualization** | JavaScript (Chart.js) |
 | **Data Export** | CSV File Export |
 | **Version Control** | Git, GitHub |
+
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/<your-username>/personal-finance-tracker.git
+cd personal-finance-tracker
+```
+
+### 2️⃣ Create a Virtual Environment
+```bash
+python -m venv venv
+```
+
+### 3️⃣ Activate the Virtual Environment
+```bash
+venv\Scripts\activate
+```
+
+
